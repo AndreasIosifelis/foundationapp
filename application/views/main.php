@@ -24,8 +24,13 @@
           appEnviroment: "<?=ENVIRONMENT?>",
           sessionId: "<?=$this->session->userdata("session_id")?>",
           userLoggedIn: <?=$userLoggedIn?>,
+          controllers:[
+              "controllers/BaseController",
+              "controllers/LayoutController",
+              "controllers/UserController"
+          ],
           dispatch:function(){
-              alert("APP Started");
+              $.UserController.initApplication();
           }
       });
     </script>

@@ -1,3 +1,7 @@
-$.define("BaseController",{});
+$.define("BaseController",{
+    models:[
+        "models/BaseModel"
+    ]
+});
 
 

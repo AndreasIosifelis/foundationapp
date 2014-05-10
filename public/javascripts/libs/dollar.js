@@ -31,7 +31,7 @@ $.extend({
         appVersion:1,
         appEnviroment: "development",
         sessionId:"",
-        jsFolder:"public/js/",
+        jsFolder:"public/javascripts/",
         templatesFolder:"public/templates/"
     },
     defined:[],
@@ -62,7 +62,7 @@ $.extend({
         }
     },
     loadFile: function(file) {
-        var f = this.config.appEnviroment == "development" ? file + ".js?" + new Date().getTime() : file + ".min.js?" + this.config.appVersion;
+        var f = this.config.appEnviroment == "development" ? file + ".js?" + new Date().getTime() : file + ".min.js?v=" + this.config.appVersion;
         document.write("<script src='"+ this.config.jsFolder + f + "'></script\>");
     },
     loadFiles: function(files) {
@@ -76,11 +76,11 @@ $.extend({
     },
     application: function(o) {   
         $.extend(this.config, o);
-        if (o.controllerFiles)
-            this.loadFiles(o.controllerFiles);
+        if (o.controllers)
+            this.loadFiles(o.controllers);
 
-        if (o.classFiles)
-            this.loadFiles(o.classFiles);
+        if (o.classes)
+            this.loadFiles(o.classes);
         
         $(function() {            
             o.dispatch();

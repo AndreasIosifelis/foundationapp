@@ -1,5 +1,4 @@
-$.define("UserModel", {
+$.define("LayoutModel", {
     extend: "BaseModel"
 });
-
 
