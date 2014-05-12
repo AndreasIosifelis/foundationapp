@@ -28,7 +28,8 @@
               "javascripts/classes/Dialog",
               "javascripts/classes/Alert",
               "javascripts/classes/Mask",
-              "javascripts/classes/Confirm"
+              "javascripts/classes/Confirm",
+              "javascripts/classes/Form"
           ],
           controllers:[
               "javascripts/controllers/BaseController",
