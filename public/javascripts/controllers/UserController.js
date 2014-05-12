@@ -4,7 +4,7 @@ $.define("UserController",{
         "javascripts/models/UserModel"
     ],
     initApplication:function(){
-        alert($.config.sessionId);
+        console.log($.config.sessionId);
     }
 });
 

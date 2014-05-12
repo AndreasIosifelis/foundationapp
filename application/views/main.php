@@ -24,6 +24,9 @@
           appEnviroment: "<?=ENVIRONMENT?>",
           sessionId: "<?=$this->session->userdata("session_id")?>",
           userLoggedIn: <?=$userLoggedIn?>,
+          classes:[
+              "javascripts/classes/DialogClass"
+          ],
           controllers:[
               "javascripts/controllers/BaseController",
               "javascripts/controllers/LayoutController",
