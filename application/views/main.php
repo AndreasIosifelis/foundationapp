@@ -16,16 +16,19 @@
     <script src="public/javascripts/libs/jquery.min.js"></script>
     <script src="public/javascripts/libs/foundation.min.js"></script>
     <script src="public/javascripts/libs/handlebars.min.js"></script>
-    <script src="public/javascripts/libs/md5.min.js"></script>
+    <script src="public/javascripts/libs/sha512.min.js"></script>
     <script src="public/javascripts/libs/dollar.js"></script>
+    <script src="public/javascripts/localizers/<?=$userInfo["langId"]?>.js"></script>
     <script>
       $.application({
           appVersion: 1,
           appEnviroment: "<?=ENVIRONMENT?>",
-          sessionId: "<?=$this->session->userdata("session_id")?>",
-          userLoggedIn: <?=$userLoggedIn?>,
+          userInfo: <?= json_encode($userInfo)?>,
           classes:[
-              "javascripts/classes/DialogClass"
+              "javascripts/classes/Dialog",
+              "javascripts/classes/Alert",
+              "javascripts/classes/Mask",
+              "javascripts/classes/Confirm"
           ],
           controllers:[
               "javascripts/controllers/BaseController",
@@ -33,6 +36,7 @@
               "javascripts/controllers/UserController"
           ],
           dispatch:function(){
+              $.Localizer = Localizer;
               $.UserController.initApplication();
           }
       });

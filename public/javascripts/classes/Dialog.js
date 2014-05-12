@@ -1,28 +1,23 @@
-$.define("DialogClass", function(_options){
+$.define("Dialog", function(_options){
     
     var _this = this;
-    this.modal = null;
+    this.dialog = null;
     
     this.options = $.extend({
-        buttons:[{
-            text:"OK",
-            cls:"secondary",
-            click:function(){
-                alert("click!");
-            }
-        }],
+        buttons:[],
         contentType: "",
         title: "",
-        content: "<p>Message</p>",
-    }, _options);
+        content: "",
+        closable: true,
+        size: "large"
+    }, _options);   
     
     
-    
-    
-    this.revealModal = function(){
+    this.dialogWindow = function(){
         var m = $("<div />");
         m.
                 addClass("reveal-modal").
+                addClass(this.options.size).
                 attr("data-reveal", "");
         
         return m;
@@ -33,26 +28,35 @@ $.define("DialogClass", function(_options){
         cl.
                 addClass("close-reveal-modal").
                 html("&#215;");
-        return cl;
+        cl.on("click", function(){
+            _this.destroy();
+        });
+        return this.options.closable ? cl : "";
     };
     
     this.title = function(){
-        var title = $("<h2 />");
+        var title = $("<h3 />");
         title.html(this.options.title);
         return title;
     };
     
     this.buttons = function(){
-        var buttonsContainer = $("<div />");
+        var buttonsContainer = $("<ul />");
+            buttonsContainer.
+                    addClass("button-group").
+                    addClass("even-" + this.options.buttons.length);
         $.each(this.options.buttons, function(i, button){
-           var _button = $("<button />");
+           var li = $("<li />");
+           var _button = $("<a />");
                _button.
+                       attr("href", "#").
                        html(button.text).
+                       addClass("button").
                        on("click", button.click);
                if(button.cls)
                    _button.addClass(button.cls);
-               
-               buttonsContainer.append(_button);
+               li.append(_button);
+               buttonsContainer.append(li);
         });
         
         return buttonsContainer;
@@ -65,51 +69,29 @@ $.define("DialogClass", function(_options){
     };
     
     this.initComponent = function(){
-        this.modal = this.revealModal();
-        this.modal.
+        this.dialog = this.dialogWindow();
+        this.dialog.
                 append(this.closeBtn()).
                 append(this.title()).
                 append(this.content()).
                 append("<br />").
                 append(this.buttons());
-        $("body").append(this.modal);
+        $("body").append(this.dialog);
     };
     
     
     this.open = function(){
-        this.initComponent();
-        this.modal.foundation("reveal", "open");
+        this.dialog.foundation("reveal", "open", {
+            animation: "fade",
+            animationSpeed: 100
+        });
     };
     
     this.destroy = function(){
-        this.modal.foundation("reveal", "close");
-        setTimeout(function(){
-            _this.modal.remove();
-        },500);
+        this.dialog.foundation("reveal", "close");
+        this.dialog.remove();
     };
     
-});
-
-$.define("Alert", function(title, msg, callBack){
-    
-    var myAlert = new $.DialogClass({
-        buttons:[{
-            text: "OK",
-            click: function(){
-                if(callBack)
-                    callBack();
-                
-                myAlert.destroy();
-            }
-        }],
-        title: title,
-        content: msg
-    });
-    
-    myAlert.open();
+    this.initComponent();
     
 });
-
-
-
-

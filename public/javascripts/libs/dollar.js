@@ -143,8 +143,8 @@ $.extend({
             $.applyEvent(cmp, selector, selectors[selector], "");
         }
     },
-    md5: function(v){
-        return CryptoJS.MD5(v).toString();
+    hash: function(v){
+        return this.isEmpty(CryptoJS) ? "" : CryptoJS.SHA512(v).toString();
     }
 });
 
