@@ -25,9 +25,9 @@
           sessionId: "<?=$this->session->userdata("session_id")?>",
           userLoggedIn: <?=$userLoggedIn?>,
           controllers:[
-              "controllers/BaseController",
-              "controllers/LayoutController",
-              "controllers/UserController"
+              "javascripts/controllers/BaseController",
+              "javascripts/controllers/LayoutController",
+              "javascripts/controllers/UserController"
           ],
           dispatch:function(){
               $.UserController.initApplication();

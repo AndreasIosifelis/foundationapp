@@ -1,6 +1,6 @@
 $.define("BaseController",{
     models:[
-        "models/BaseModel"
+        "javascripts/models/BaseModel"
     ]
 });
 

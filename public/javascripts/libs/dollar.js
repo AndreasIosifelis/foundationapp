@@ -31,8 +31,7 @@ $.extend({
         appVersion:1,
         appEnviroment: "development",
         sessionId:"",
-        jsFolder:"public/javascripts/",
-        templatesFolder:"public/templates/"
+        rootFolder:"public/"
     },
     defined:[],
     define:function(c, o){
@@ -47,23 +46,20 @@ $.extend({
     },
     renderTpl:function(tpl, target, data){
         var _this = this;            
-            tpl = this.config.templatesFolder + tpl;        
-        var tplId = tpl.split("/");
-            tplId = tplId[tplId.length - 1];
-            tplId = tplId.split(".")[0];       
-        
+            tpl = this.config.rootFolder + tpl;        
+        var tplId = $.md5(tpl);        
         if(this.hasOwnProperty(tplId)){
             target.html(this[tplId](data));
         } else {
             $.get(tpl, function(datahtml){
                 _this[tplId] = Handlebars.compile(datahtml);
-                target.html(_this[tplId](data));        
+                target.html(_this[tplId](data));             
             });
         }
     },
     loadFile: function(file) {
         var f = this.config.appEnviroment == "development" ? file + ".js?" + new Date().getTime() : file + ".min.js?v=" + this.config.appVersion;
-        document.write("<script src='"+ this.config.jsFolder + f + "'></script\>");
+        document.write("<script src='"+ this.config.rootFolder + f + "'></script\>");
     },
     loadFiles: function(files) {
         if(this.isArray(files)) {

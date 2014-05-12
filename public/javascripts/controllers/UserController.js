@@ -1,7 +1,7 @@
 $.define("UserController",{
     extend:"BaseController",
     models:[
-        "models/UserModel"
+        "javascripts/models/UserModel"
     ],
     initApplication:function(){
         alert($.config.sessionId);

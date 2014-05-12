@@ -1,6 +1,6 @@
 $.define("LayoutController",{
     extend:"BaseController",
     models:[
-        "models/LayoutModel"
+        "javascripts/models/LayoutModel"
     ]
 });
