@@ -8,5 +8,8 @@ $.define("LayoutController",{
     },
     applyMainLayout:function(){
         console.log("Main Layout");
+        
+        
+        
     }
 });
