@@ -4,12 +4,21 @@ $.define("LayoutController",{
         "javascripts/models/LayoutModel"
     ],
     applyLoginLayout: function(){
-        console.log("Login Layout");
+        
+        var data = {
+            APP_TITLE: "Application Title",
+            USERNAME: $.Localizer.USERNAME,
+            PASSWORD: $.Localizer.PASSWORD,
+            LOGIN:$.Localizer.LOGIN,
+            sessionId: $.config.userInfo.sessionId
+        };
+        
+        $.renderTpl("templates/main/LoginLayoutTemplate.html", $("#AppContainer"), data);
     },
     applyMainLayout:function(){
-        console.log("Main Layout");
-        
-        
-        
+        var data = {
+            APP_TITLE: "Application Title"
+        };
+        $.renderTpl("templates/main/MainLayoutTemplate.html", $("#AppContainer"), data);   
     }
 });

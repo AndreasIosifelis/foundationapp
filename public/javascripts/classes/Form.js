@@ -56,7 +56,7 @@ $.define("Form", {
         if($.isEmpty(errors)){
             return true;
         } else {
-            $.alert($.Localizer.VALIDATION_ERROR, errors.join("<br />"));
+            $.Alert($.Localizer.VALIDATION_ERROR, errors.join("<br />"));
             return false;
         }        
     },

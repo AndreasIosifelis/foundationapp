@@ -47,15 +47,20 @@ $.extend({
     renderTpl:function(tpl, target, data){
         var _this = this;            
             tpl = this.config.rootFolder + tpl;        
-        var tplId = $.md5(tpl);        
+        var tplId = $.hash("MD5", tpl);
         if(this.hasOwnProperty(tplId)){
             target.html(this[tplId](data));
+            $.initEvents();
+            $.config.configLayout();
         } else {
             $.get(tpl, function(datahtml){
                 _this[tplId] = Handlebars.compile(datahtml);
-                target.html(_this[tplId](data));             
+                target.html(_this[tplId](data));
+                $.initEvents();
+                $.config.configLayout();
             });
         }
+        
     },
     loadFile: function(file) {
         var f = this.config.appEnviroment == "development" ? file + ".js?" + new Date().getTime() : file + ".min.js?v=" + this.config.appVersion;
@@ -143,8 +148,8 @@ $.extend({
             $.applyEvent(cmp, selector, selectors[selector], "");
         }
     },
-    hash: function(v){
-        return this.isEmpty(CryptoJS) ? "" : CryptoJS.SHA512(v).toString();
+    hash: function(m,v){
+        return this.isEmpty(CryptoJS) ? "" : CryptoJS[m](v).toString();
     }
 });
 

@@ -1,12 +1,25 @@
 $.define("UserModel", {
     extend: "BaseModel",
+    loginValidationRules:[{
+        id: "#username",
+        rules: "required|minlength:6"
+    },{
+        id: "#password",
+        rules: "required|minlength:6"
+    }, {
+        id: "#sessionId",
+        rules: "required"
+    }],
+    userInfo: {},
     setUserInfo: function(userInfo){
         this.userInfo = userInfo;
         $.config.userInfo = userInfo;
-    },
-    userInfo: {},
+    },    
     doLogin: function(json){
-        return this.httpCall("user/doLogin", json, Localizer.LOGGING_IN);
+        return this.httpCall("user/login", json, $.Localizer.CONNECTING);
+    },
+    logout:function(){
+        return this.httpCall("user/logout", [], $.Localizer.DISCONNECTING + "...");
     }
 });
 

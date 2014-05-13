@@ -7,6 +7,7 @@ Localizer.DISCONNECTING = "Disconnecting";
 Localizer.DO_YOU_WISH_TO_LOGOUT = "Do you wish to logout?";
 Localizer.EMAIL = "Email";
 Localizer.ERROR_105 = "Invalid Credentials";
+Localizer.ERROR_101 = "Invalid Session or Session Expired";
 Localizer.FIRST_NAME = "First Name";
 Localizer.FULL_NAME = "Full Name";
 Localizer.INITIALIZING_APPLICATION = "Initializing Application";

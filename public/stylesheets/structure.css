@@ -8,3 +8,35 @@ and open the template in the editor.
     Author     : andreas
 */
 
+*{
+    font-family: Trebuchet MS !important;
+    outline:none;
+}
+
+.bodymask{
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    background:#000;
+    filter: Alpha(Opacity=45);
+    opacity: .45;
+    z-index: 999;
+}
+
+.maskmsg{
+    position:absolute;
+    padding:20px 20px 20px 55px;
+    text-aling:center;
+    text-shadow: 0px 1px 0px white;
+    border:1px solid #ccc;
+    color:#000;
+    z-index: 9991;    
+    border-radius: 2px;
+    background-image: url("../images/bg-loading.gif");
+    background-repeat: no-repeat;
+    background-position: 5px 7px;
+    background-color: #e6e6e6;
+}
+

@@ -1,0 +1,42 @@
+<nav class="top-bar">
+    <ul class="title-area">
+        <!-- Title Area -->
+        <li class="name">
+            <h1><a href="#">Top Bar Title </a></h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>{{MENU}}</span></a></li>
+    </ul>
+</nav>
+
+<form class="row" id="LoginForm">
+    <input type="hidden" name="sessionId" id="sessionId" value="{{sessionId}}" />
+    <fieldset>
+        <div class="row">
+            <div class="large-12 large-offset-4 columns"><h4>{{LOGIN}}</h4></div>
+        </div>
+        <div class="row">
+            <div class="large-4 large-offset-4 columns">
+                <label>{{USERNAME}}</label>
+                <input type="text" name="username" id="username"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 large-offset-4 columns">
+                <label>{{PASSWORD}}</label>
+                <input type="password" name="password" id="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 large-offset-4 columns">
+                <input type="submit" class="button secondary small" value="{{LOGIN}}"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-4 large-offset-4 columns" id="ResponseBox">
+            </div>
+        </div>
+
+    </fieldset>
+</form>
