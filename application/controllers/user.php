@@ -17,7 +17,6 @@ class User extends FA_Controller
     
     public function login()
     {
-        sleep(5);
         $this->authClient();
         $request = $this->request();
         $username = $request["username"];
@@ -29,9 +28,10 @@ class User extends FA_Controller
             $response["success"] = true;
             $response["userInfo"] = array(
                 "sessionId" => $this->session->userdata("session_id"),
-                "langId"=> $this->session->userdata("lang_id"),
+                "langId" => $this->session->userdata("lang_id"),
                 "loggedIn"=> $this->session->userdata("logged_in"),
-                "userToken"=>$this->session->userdata("user_token")
+                "userToken"=>$this->session->userdata("user_token"),
+                "userId"=>$this->session->userdata("user_id")
             );
             $response["lookupInfo"] = "lookupInfo";
         }
@@ -45,8 +45,12 @@ class User extends FA_Controller
     
     public function logout()
     {
-        $this->session->sess_destroy();
+        $this->User_model->logout();
         $response["success"] = TRUE;
+        $response["userInfo"] = array();
+        $response["userInfo"]["sessionId"] = $this->session->userdata("session_id");
+        $response["userInfo"]["langId"] = $this->session->userdata("lang_id") ? $this->session->userdata("lang_id") : "en";
+        $response["userInfo"]["loggedIn"] = $this->session->userdata("logged_in");
         $this->response($response);
     }
 }

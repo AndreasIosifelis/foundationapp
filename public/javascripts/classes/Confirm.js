@@ -3,6 +3,7 @@ $.define("Confirm", function(title, msg, callBack){
     var myConfirm = new $.Dialog({
         buttons:[{
             text: "OK",
+            cls: "small",
             click: function(){
                 if(callBack)
                     callBack();
@@ -11,6 +12,7 @@ $.define("Confirm", function(title, msg, callBack){
             }
         },{
             text:"Cancel",
+            cls: "small",
             click: function(){
                 myConfirm.destroy();
             }

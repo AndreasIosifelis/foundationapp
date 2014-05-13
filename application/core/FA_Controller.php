@@ -32,8 +32,14 @@ class FA_Controller extends CI_Controller
     private function errorResponse($error)
     {
         $response["success"] = FALSE;
-        $response["error"] = $error;
+        $response["messages"] = array($error);
         $this->response($response);
+        die();
+    }
+    
+    public function debugger($expression)
+    {
+        var_dump($expression);
         die();
     }
 }

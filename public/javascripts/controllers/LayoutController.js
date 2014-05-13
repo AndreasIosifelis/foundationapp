@@ -10,7 +10,7 @@ $.define("LayoutController",{
             USERNAME: $.Localizer.USERNAME,
             PASSWORD: $.Localizer.PASSWORD,
             LOGIN:$.Localizer.LOGIN,
-            sessionId: $.config.userInfo.sessionId
+            sessionId: $.UserModel.userInfo.sessionId
         };
         
         $.renderTpl("templates/main/LoginLayoutTemplate.html", $("#AppContainer"), data);

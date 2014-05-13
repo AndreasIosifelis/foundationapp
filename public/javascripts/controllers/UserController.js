@@ -31,7 +31,8 @@ $.define("UserController", {
             json.password = passwordVal;
             $.when($.UserModel.doLogin(JSON.stringify(json))).then(function(data) {
                 if (data.success) {
-                    
+                    $.UserModel.setUserInfo(data.userInfo);
+                    $.LayoutController.applyMainLayout();
                 } else {
                     $.Alert($.Localizer.LOGIN_ERROR, _this.localizeErrors(data.messages));                    
                 }
@@ -43,8 +44,8 @@ $.define("UserController", {
         var _this = this;
         $.Confirm($.Localizer.LOGOUT, $.Localizer.DO_YOU_WISH_TO_LOGOUT, function() {
             $.when($.UserModel.logout()).then(function(data) {
-                if (data.success) {
-                    $.UserModel.setUserInfo({});
+                if (data.success) {                    
+                    $.UserModel.setUserInfo(data.userInfo);
                     $.LayoutController.applyLoginLayout();
                 }
             });

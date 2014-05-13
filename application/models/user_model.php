@@ -9,9 +9,6 @@ class User_model extends CI_Model
         return !$this->session->userdata("logged_in") ? false : true;
     }
     
-    public function getUserInfo()
-    {}
-    
     public function login($username, $password)
     {
         if(empty($username) || empty($password))
@@ -37,7 +34,7 @@ class User_model extends CI_Model
         {
             $user = $query->result();
             $user = $user[0];
-            $userIdc = $user->idc;
+            $userIdc = $user->id;
             $dbUsername = $user->username;
             $dbPassword = $user->password;
             $dbSalt = $user->salt;
@@ -56,19 +53,28 @@ class User_model extends CI_Model
             else
             {
                $userToken = hash("sha512", 
-                       $user->idc.
+                       $user->id.
                        $this->session->userdata("ip_address").
                        time().
                        $this->session->userdata("user_agent").
                        $this->session->userdata("session_id"));               
                $this->session->set_userdata("logged_in", TRUE);
                $this->session->set_userdata("full_name", $user->firstName." ".$user->lastName);
-               $this->session->set_userdata("user_idc", $user->id);
+               $this->session->set_userdata("user_id", $user->id);
                $this->session->set_userdata("user_token", $userToken);
-               $this->session->set_userdata("lang_id",$user->languageId);
+               $this->session->set_userdata("lang_id",$user->langId);
             }
         } 
         
+    }
+    
+    public function logout()
+    {
+        $this->session->unset_userdata("logged_in");
+        $this->session->unset_userdata("full_name");
+        $this->session->unset_userdata("user_id");
+        $this->session->unset_userdata("user_token");
+        $this->session->unset_userdata("lang_id");
     }
 }
 

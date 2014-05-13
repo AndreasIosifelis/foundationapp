@@ -6,9 +6,6 @@ $.define("UserModel", {
     },{
         id: "#password",
         rules: "required|minlength:6"
-    }, {
-        id: "#sessionId",
-        rules: "required"
     }],
     userInfo: {},
     setUserInfo: function(userInfo){
