@@ -24,6 +24,7 @@
           appVersion: 1,
           appEnviroment: "<?=ENVIRONMENT?>",
           userInfo: <?= json_encode($userInfo)?>,
+          appContainer: $("#AppContainer"),
           classes:[
               "javascripts/classes/Dialog",
               "javascripts/classes/Alert",

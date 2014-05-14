@@ -27,6 +27,7 @@
 })();
 
 $.extend({
+    COMPILEDHTML: "",
     config:{
         appVersion:1,
         appEnviroment: "development",
@@ -61,6 +62,27 @@ $.extend({
             });
         }
         
+    },
+    getTpl: function(tpl, data){
+        var _this = this;            
+            tpl = this.config.rootFolder + tpl;
+        var tplId = $.hash("MD5", tpl);
+        var html = "";
+        if(this.hasOwnProperty(tplId)){
+            html =  this[tplId](data);
+        } else {
+            $.ajax({
+                url: tpl,
+                dataType: "html",
+                async:false,
+                success:function(datahtml){
+                    _this[tplId] = Handlebars.compile(datahtml);
+                    html =  _this[tplId](data);
+                }
+            });
+        }
+        
+        return html;
     },
     loadFile: function(file) {
         var f = this.config.appEnviroment == "development" ? file + ".js?" + new Date().getTime() : file + ".min.js?v=" + this.config.appVersion;
