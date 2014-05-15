@@ -45,6 +45,9 @@ $.extend({
         if (o.extend && this.hasOwnProperty(c))
             $.extend(this[c], this[o.extend]);
     },
+    template:function(tpl, data, target){
+        
+    },
     renderTpl:function(tpl, target, data){
         var _this = this;            
             tpl = this.config.rootFolder + tpl;        
