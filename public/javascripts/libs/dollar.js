@@ -46,46 +46,40 @@ $.extend({
             $.extend(this[c], this[o.extend]);
     },
     template:function(tpl, data, target){
-        
-    },
-    renderTpl:function(tpl, target, data){
-        var _this = this;            
-            tpl = this.config.rootFolder + tpl;        
+        var _this = this;
+        tpl = this.config.rootFolder + tpl;
         var tplId = $.hash("MD5", tpl);
-        if(this.hasOwnProperty(tplId)){
-            target.html(this[tplId](data));
-            $.initEvents();
-            $.config.configLayout();
+        if(this.hasOwnProperty(tplId)){                       
+           if($.isEmpty(target)){
+               return this[tplId](data);
+           } else {
+               target.html(this[tplId](data));
+               $.initEvents();
+               $.config.configLayout();
+           }
         } else {
-            $.get(tpl, function(datahtml){
-                _this[tplId] = Handlebars.compile(datahtml);
-                target.html(_this[tplId](data));
-                $.initEvents();
-                $.config.configLayout();
-            });
-        }
-        
-    },
-    getTpl: function(tpl, data){
-        var _this = this;            
-            tpl = this.config.rootFolder + tpl;
-        var tplId = $.hash("MD5", tpl);
-        var html = "";
-        if(this.hasOwnProperty(tplId)){
-            html =  this[tplId](data);
-        } else {
+            var html = "";
             $.ajax({
                 url: tpl,
                 dataType: "html",
                 async:false,
                 success:function(datahtml){
-                    _this[tplId] = Handlebars.compile(datahtml);
-                    html =  _this[tplId](data);
+                    if($.isEmpty(target)){
+                        _this[tplId] = Handlebars.compile(datahtml);
+                        html = _this[tplId](data);
+                    } else {
+                        _this[tplId] = Handlebars.compile(datahtml);
+                        target.html(_this[tplId](data));
+                         $.initEvents();
+                        $.config.configLayout();
+                    }
                 }
             });
+            
+            if($.isEmpty(target))
+                return html;
+            
         }
-        
-        return html;
     },
     loadFile: function(file) {
         var f = this.config.appEnviroment == "development" ? file + ".js?" + new Date().getTime() : file + ".min.js?v=" + this.config.appVersion;

@@ -13,12 +13,12 @@ $.define("LayoutController",{
             sessionId: $.UserModel.userInfo.sessionId
         };
         
-        $.renderTpl("templates/main/LoginLayout.html", $.config.appContainer, data);
+        $.template("templates/main/LoginLayout.html", data, $.config.appContainer);
     },
     applyMainLayout:function(){
         var data = {
             APP_TITLE: "Application Title"
         };
-        $.renderTpl("templates/main/MainLayout.html", $.config.appContainer, data);   
+        $.template("templates/main/MainLayout.html", data, $.config.appContainer);       
     }
 });
