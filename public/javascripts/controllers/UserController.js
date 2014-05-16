@@ -12,6 +12,9 @@ $.define("UserController", {
         },
         "#ProfileMenuItem|click": function(cmp, c, e){
             c.profile(cmp, e);
+        },
+        "#ChangeCredentialsCheckbox|click":function(cmp,c,e){
+            c.showHideCredentialsPanel(cmp ,e);
         }
     },
     initApplication: function() {
@@ -61,9 +64,11 @@ $.define("UserController", {
     },
     profile:function(cmp, e){
         if(!this.authUser())
-            return;
-       
+            return;       
         $.template("templates/user/Profile.html", {}, $("#PageContainer"));
+    },
+    showHideCredentialsPanel:function(cmp, e){
+        $("#ChangeCredentialsPanel").toggle();
     }
 });
 

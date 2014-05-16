@@ -4,7 +4,6 @@ $.define("LayoutController",{
         "javascripts/models/LayoutModel"
     ],
     applyLoginLayout: function(){
-        
         var data = {
             APP_TITLE: "Application Title",
             USERNAME: $.Localizer.USERNAME,
@@ -16,6 +15,8 @@ $.define("LayoutController",{
         $.template("templates/main/LoginLayout.html", data, $.config.appContainer);
     },
     applyMainLayout:function(){
+        if(!this.authUser())
+            return;  
         var data = {
             APP_TITLE: "Application Title"
         };

@@ -48,7 +48,7 @@ class User_model extends CI_Model
             
             if($saltedPassword !== $dbPassword)
             {
-                $this->errors[] = 106;
+                $this->errors[] = 105;
             }
             else
             {
