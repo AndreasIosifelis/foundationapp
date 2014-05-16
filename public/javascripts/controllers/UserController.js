@@ -9,6 +9,9 @@ $.define("UserController", {
         },
         "#LogoutMenuItem|click": function(cmp, c, e) {
             c.logout(cmp);
+        },
+        "#ProfileMenuItem|click": function(cmp, c, e){
+            c.profile(cmp, e);
         }
     },
     initApplication: function() {
@@ -55,6 +58,12 @@ $.define("UserController", {
         $.when($.UserModel.logout()).then(function() {
             $.LayoutController.applyLoginLayout();
         });
+    },
+    profile:function(cmp, e){
+        if(!this.authUser())
+            return;
+       
+        $.template("templates/user/Profile.html", {}, $("#PageContainer"));
     }
 });
 

@@ -157,9 +157,8 @@ $.extend({
     applyEvent: function(cmp, event, fn, c) {
         cmp.unbind(event);
         cmp.on(event, function(e) {
+            e.preventDefault();
             $.isEmpty(c) ? fn(cmp, e) : fn(cmp, c, e);
-            //$.initEvents();
-            return false;
         });
     },
     applyEvents: function(cmp, selectors) {

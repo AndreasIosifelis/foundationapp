@@ -10,14 +10,14 @@
 </nav>
 
 <form class="row" id="LoginForm">
-    <fieldset>
+    <div class="panel radius">
         <div class="row">
             <div class="large-12 large-offset-4 columns"><h4>{{LOGIN}}</h4></div>
         </div>
         <div class="row">
             <div class="large-4 large-offset-4 columns">
                 <label>{{USERNAME}}</label>
-                <input type="text" name="username" id="username"/>
+                <input type="text" name="username" id="username" autocomplete="off"/>
             </div>
         </div>
         <div class="row">
@@ -28,7 +28,7 @@
         </div>
         <div class="row">
             <div class="large-4 large-offset-4 columns">
-                <input type="submit" class="button secondary small" value="{{LOGIN}}"/>
+                <input type="submit" class="button primary small" value="{{LOGIN}}"/>
             </div>
         </div>
 
@@ -37,5 +37,5 @@
             </div>
         </div>
 
-    </fieldset>
+    </div>
 </form>

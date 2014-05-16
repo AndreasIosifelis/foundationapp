@@ -8,6 +8,9 @@ $.define("BaseController",{
             arr.push($.Localizer["ERROR_" + errors[i]]);
         }        
         return arr.join("\n");
+    },
+    authUser:function(){
+        return $.UserModel.userInfo.loggedIn;
     }
 });
 

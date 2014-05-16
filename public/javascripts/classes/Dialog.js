@@ -10,7 +10,8 @@ $.define("Dialog", function(_options) {
         content: "",
         closable: true,
         size: "large",
-        animation: "fade"
+        animation: "fade",
+        buttonSize:"small"
     }, _options);
 
 
@@ -42,8 +43,9 @@ $.define("Dialog", function(_options) {
     };
 
     this.buttons = function() {
-        var buttonsContainer = $("<ul />");
-        buttonsContainer.
+        var buttonsUl = $("<ul />"),
+                _this = this;
+        buttonsUl.
                 addClass("button-group").
                 addClass("even-" + this.options.buttons.length);
         $.each(this.options.buttons, function(i, button) {
@@ -52,13 +54,19 @@ $.define("Dialog", function(_options) {
             _button.
                     attr("href", "#").
                     html(button.text).
-                    addClass("button").
+                    addClass("button " + _this.options.buttonSize).
                     on("click", button.click);
             if (button.cls)
                 _button.addClass(button.cls);
             li.append(_button);
-            buttonsContainer.append(li);
+            buttonsUl.append(li);
         });
+        
+        
+        var buttonsContainer = $("<div />");
+        buttonsContainer.
+                addClass("row").
+                append(buttonsUl);
 
         return buttonsContainer;
     };
