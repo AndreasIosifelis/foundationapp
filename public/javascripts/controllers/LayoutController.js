@@ -12,7 +12,7 @@ $.define("LayoutController",{
             sessionId: $.UserModel.userInfo.sessionId
         };
         
-        $.template("templates/main/LoginLayout.html", data, $.config.appContainer);
+        $.template("templates/user/Login.html", data, $.config.appContainer);
     },
     applyMainLayout:function(){
         if(!this.authUser())
@@ -20,6 +20,6 @@ $.define("LayoutController",{
         var data = {
             APP_TITLE: "Application Title"
         };
-        $.template("templates/main/MainLayout.html", data, $.config.appContainer);       
+        $.template("templates/user/Main.html", data, $.config.appContainer);       
     }
 });

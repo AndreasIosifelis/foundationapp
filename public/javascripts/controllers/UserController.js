@@ -64,7 +64,10 @@ $.define("UserController", {
     },
     profile:function(cmp, e){
         if(!this.authUser())
-            return;       
+            return;
+        
+        
+        
         $.template("templates/user/Profile.html", {}, $("#PageContainer"));
     },
     showHideCredentialsPanel:function(cmp, e){
